@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>RI Sex Offenders</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="content">
+    <table id="rows">
+        <tbody>
+        <tr>
+            <td>
+                <h1>A REST API for the Rhode Island Sex Offender Database</h1></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Requests to "<strong>/offenders</strong>" will return the complete offender list.</h4>
+                <h6>Offender attributes-</h6>
+                <ul>
+                    <li><strong>id:</strong> database primary key</li>
+                    <li><strong>link:</strong> url for the offender RI database page</li>
+                    <li><strong>name:</strong> offender name</li>
+                    <li><strong>level:</strong> sex offender level (II or III)</li>
+                    <li><strong>dob:</strong> offender's date of birth</li>
+                    <li><strong>sex:</strong> male or female</li>
+                    <li><strong>race:</strong> race of offender</li>
+                    <li><strong>height:</strong> offender's height</li>
+                    <li><strong>weight:</strong> weight of offender</li>
+                    <li><strong>eyes:</strong> eye color of offender</li>
+                    <li><strong>hair:</strong> offender's hair color</li>
+                    <li><strong>convictedOf:</strong> information on offender's crime(s)</li>
+                    <li><strong>supervision:</strong> current status of community supervision</li>
+                    <li><strong>address:</strong>
+                        <ul>
+                            <li><strong>street:</strong> offender's street address</li>
+                            <li><strong>city:</strong> offender address city, state, and zip</li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="buttonDiv">
+                    <h5># of Offenders : &nbsp;&nbsp;<strong><span th:text="${#lists.size(list)}">???</span></strong>
+                    </h5>
+                    <a id="myButton" class="button button-primary" href="#">click to show/hide the database table</a>
+                </div>
+                <div id="myTable" style="display: none">
+                    <table class="u-full-width">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Lvl</th>
+                            <th>Name</th>
+                            <th>DOB</th>
+                            <th>Sex</th>
+                            <th>Race</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Eyes</th>
+                            <th>Hair</th>
+                            <th>Address</th>
+                            <th>Convicted Of</th>
+                            <th>Supervision</th>
+                            <th>URL</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="offender : ${list}">
+                            <td th:text="${offender.id}">666</td>
+                            <td th:text="${offender.level}">3</td>
+                            <td th:text="${offender.name}" style="white-space: nowrap">Bob Jones</td>
+                            <td th:text="${offender.dob}">1/14/1985</td>
+                            <td th:text="${offender.sex}">Male</td>
+                            <td th:text="${offender.race}">White</td>
+                            <td th:text="${offender.height}">6'1"</td>
+                            <td th:text="${offender.weight}" style="white-space: nowrap">220lbs</td>
+                            <td th:text="${offender.eyes}">Red</td>
+                            <td th:text="${offender.hair}">Blonde</td>
+                            <td>
+                                <span th:text="${offender.address.street}">21 Jump Street</span><br/>
+                                <span th:text="${offender.address.city}"
+                                      style="white-space: nowrap">Schenectady, NY 12303</span>
+                            </td>
+                            <td th:text="${offender.convictedOf}">A bunch of sex crimes</td>
+                            <td th:text="${offender.supervision}">Probation expires in days</td>
+                            <td><a th:href="${offender.link}" style="white-space: nowrap">RI Page</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script th:if="${#lists.isEmpty(list)}">
+    var location;
+    setTimeout(function () {
+        location = ''
+    }, 20000);
+    $(function () {
+        $("#myButton").click(function(){
+            location.reload();
+        })
+    });
+</script>
+<script>
+    $(function () {
+        $("#myButton").click(function () {
+            $("#myTable").toggle();
+        });
+    });
+</script>
+</body>
+</html>
