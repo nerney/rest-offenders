@@ -52,57 +52,59 @@ public class ResourceBuilder implements ApplicationListener<ApplicationReadyEven
             Address address = new Address();
             for (Element element : elements) {
                 String txt = element.text();
-                if (txt.contains("Name:")) {
-                    txt = txt.substring(6);
-                    offender.setName(txt);
+                if (txt.length() > 0) {
+                    if (txt.contains("Name:")) {
+                        txt = txt.substring(6);
+                        offender.setName(txt);
+                    }
+                    if (txt.contains("Address:")) {
+                        txt = txt.substring(9);
+                        address.setStreet(txt);
+                    }
+                    if (txt.contains("City/Town:")) {
+                        txt = txt.substring(11);
+                        address.setCity(txt);
+                    }
+                    if (txt.contains("Date of Birth:")) {
+                        txt = txt.substring(15);
+                        offender.setDob(txt);
+                    }
+                    if (txt.contains("Sex:")) {
+                        txt = txt.substring(5);
+                        offender.setSex(txt);
+                    }
+                    if (txt.contains("Race:")) {
+                        txt = txt.substring(6);
+                        offender.setRace(txt);
+                    }
+                    if (txt.contains("Height:")) {
+                        txt = txt.substring(8);
+                        offender.setHeight(txt);
+                    }
+                    if (txt.contains("Weight:")) {
+                        txt = txt.substring(8);
+                        offender.setWeight(txt);
+                    }
+                    if (txt.contains("Eye Color:")) {
+                        txt = txt.substring(11);
+                        offender.setEyes(txt);
+                    }
+                    if (txt.contains("Hair Color:")) {
+                        txt = txt.substring(12);
+                        offender.setHair(txt);
+                    }
+                    if (txt.contains("Convicted of:")) {
+                        txt = txt.substring(14);
+                        offender.setConvictedOf(txt);
+                    }
+                    if (txt.contains("Community Supervision:")) {
+                        txt = txt.substring(23);
+                        offender.setSupervision(txt);
+                    }
                 }
-                if (txt.contains("Address:")) {
-                    txt = txt.substring(9);
-                    address.setStreet(txt);
-                }
-                if (txt.contains("City/Town:")) {
-                    txt = txt.substring(11);
-                    address.setCity(txt);
-                }
-                if (txt.contains("Date of Birth:")) {
-                    txt = txt.substring(15);
-                    offender.setDob(txt);
-                }
-                if (txt.contains("Sex:")) {
-                    txt = txt.substring(5);
-                    offender.setSex(txt);
-                }
-                if (txt.contains("Race:")) {
-                    txt = txt.substring(6);
-                    offender.setRace(txt);
-                }
-                if (txt.contains("Height:")) {
-                    txt = txt.substring(8);
-                    offender.setHeight(txt);
-                }
-                if (txt.contains("Weight:")) {
-                    txt = txt.substring(8);
-                    offender.setWeight(txt);
-                }
-                if (txt.contains("Eye Color:")) {
-                    txt = txt.substring(11);
-                    offender.setEyes(txt);
-                }
-                if (txt.contains("Hair Color:")) {
-                    txt = txt.substring(12);
-                    offender.setHair(txt);
-                }
-                if (txt.contains("Convicted of:")) {
-                    txt = txt.substring(14);
-                    offender.setConvictedOf(txt);
-                }
-                if (txt.contains("Community Supervision:")) {
-                    txt = txt.substring(23);
-                    offender.setSupervision(txt);
-                }
+                offender.setAddress(address);
+                offenders.add(offender);
             }
-            offender.setAddress(address);
-            offenders.add(offender);
         }
         return offenders;
     }

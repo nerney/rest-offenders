@@ -10,8 +10,6 @@ import javax.persistence.Embeddable;
  * Created by nerney on 7/14/2017.
  */
 @Embeddable
-@Getter
-@Setter
 @NoArgsConstructor
 public class Address {
     private String street;
@@ -20,5 +18,21 @@ public class Address {
     @Override
     public String toString() {
         return street + " " + city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
