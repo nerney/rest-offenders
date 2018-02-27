@@ -1,7 +1,7 @@
 # rest-offenders
 A REST API for the Rhode Island Sex Offender Database
 
-rest-offenders builds a RESTful back-end for the Rhode Island sex offender database (RISOD).
+rest-offenders builds an api back-end for the Rhode Island sex offender database (RISOD).
 
 How it works:
 - Spring Boot w/ jpa, web, h2, and thymeleaf
