@@ -1,5 +1,5 @@
 # rest-offenders
-A REST API for the Rhode Island Sex Offender Database
+An API for the Rhode Island Sex Offender Database
 
 rest-offenders builds an api back-end for the Rhode Island sex offender database (RISOD).
 
